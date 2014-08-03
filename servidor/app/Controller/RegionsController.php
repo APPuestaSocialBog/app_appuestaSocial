@@ -101,4 +101,72 @@ class RegionsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function list_departments_xhr(){
+		$this->layout = "ajax";
+
+		$MRegions = ClassRegistry::init("regions");
+		$MRegions->recursive = 1;
+
+		$departments = $MRegions->find("all",array(
+				'fields' => array("cod_departamento","nombre_departamento"),
+				'group' =>array('cod_departamento')
+			));
+
+		echo (json_encode($departments));
+
+
+	}
+
+	public function list_municipalities_by_department_id_xhr(){
+		$this->layout = "ajax";
+
+		if ($this->request->is('post')) {
+			$department_id = $this->request->data["department_id"];
+			$MRegions = ClassRegistry::init("regions");
+			$MRegions->recursive = 1;
+
+
+            $munucipalities_list = $MRegions->find("all", array(
+            							"fields" => array('cod_municipio',"nombre_municipio"),
+            							"conditions" => array('cod_departamento' => $department_id))
+            						);
+
+            echo (json_encode($munucipalities_list));
+		}
+
+	}
+
+	public function isAuthorized($user){
+
+		$accion = $this->action;
+		if(!parent::isAuthorized($user)){
+			if (isset($user['group_id']) && $user['group_id'] == 2) {
+				switch ($accion) {
+					case 'list_departments_xhr': 
+					case 'list_municipalities_by_department_id_xhr':
+						# code...
+						break;
+						# code...
+						break;
+						# code...
+						break;
+						# code...
+						break;
+						# code...
+						break;
+							return true;
+						break;
+					default:
+						$this->redirect(array('controller' => 'users', 'action' => 'noautorized'));
+						return false;
+						break;
+				}
+	    	}
+		}
+		return true;
+	}
+
+
+
 }
