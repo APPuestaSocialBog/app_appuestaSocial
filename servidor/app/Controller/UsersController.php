@@ -12,7 +12,7 @@ class UsersController extends AppController {
 public function beforeFilter() {
     parent::beforeFilter();
     // Allow users to register and logout.
-    $this->Auth->allow('add', 'logout','login_xhr','logout_xhr','is_auth');
+    $this->Auth->allow('add', 'logout','login_xhr','logout_xhr','is_auth', 'add_new_user_xhr');
 }
 
 public function login() {
@@ -92,7 +92,12 @@ public function logout_xhr() {
  * @return void
  */
 	public function add() {
+
 		if ($this->request->is('post')) {
+
+			debug($this->request->data);
+			exit(1);
+
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
@@ -104,6 +109,28 @@ public function logout_xhr() {
 		$groups = $this->User->Group->find('list');
 		$this->set(compact('groups'));
 	}
+
+	public function add_new_user_xhr() {
+		$this->layout = "ajax";
+		if ($this->request->is('post')) {
+			$documento = $this->request->data["User"]["username"];
+
+            $user = $this->User->find("count", array("conditions" => array('username' => $documento)));
+
+            if($user >= 1){
+            	echo (json_encode(array("status"=>"registered_user_fail","msg"=>"El n&ucute;mero de documento ya se encuentra registrado")));
+            }else{
+            	$this->User->create();
+				if ($this->User->save($this->request->data)) {
+					echo (json_encode(array("status"=>"registered_user_ok","msg"=>"Registro Existoso")));
+				} else {
+					echo (json_encode(array("status"=>"registered_user_fail","msg"=>"Ocurrio un error al guardar, por favor intenta de nuevo.")));
+					//$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				}
+            }
+		}
+	}
+
 
 /**
  * edit method
@@ -156,7 +183,7 @@ public function logout_xhr() {
 
 	}
 
-	public function is_auth(){
+	public function is_auth_xhr(){
 		$this->layout = "ajax";
 		if ( $this->Session->check('Auth.User') ){
 			$dataUser["status"] = "is_auth_ok";
@@ -184,6 +211,9 @@ public function logout_xhr() {
 					case "login_xhr":
 					case "logout_xhr":
 					case "is_auth":
+					case "add_new_user_xhr":
+						# code...
+						break;
 						# code...
 						break;
 							return true;
@@ -196,5 +226,19 @@ public function logout_xhr() {
 	    	}
 		}
 		return true;
+	}
+
+
+	public function setDepartmentsList_xhr(){
+		$this->layout = "ajax";
+
+		$MRegions = ClassRegistry::init("regions");
+		$MRegions->recursive = 1;
+
+		$MRegions->find("all",array(
+				'fields' => array("cod_departamento","nombre_departamento")
+			));
+
+
 	}
 }
