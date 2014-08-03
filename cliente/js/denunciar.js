@@ -1,5 +1,16 @@
 server = "http://localhost:8000/app_appuestaSocial/servidor/";
 $(function(){
+
+
+	$.post(server+"Users/is_auth_xhr",{},function(islogin_dataResponse){
+		
+		islogin_dataResponse = JSON.parse(islogin_dataResponse)
+		if(islogin_dataResponse.status = "is_auth_ok" ){
+			user_auth = islogin_dataResponse
+		}else{
+			location = "login.html";
+		}}
+	);
 	// cargar listado de departamentos
 
 	categoriaData = JSON.parse(localStorage.getItem("categoria"));

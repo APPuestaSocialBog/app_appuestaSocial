@@ -1,5 +1,20 @@
 server = "http://localhost:8000/app_appuestaSocial/servidor/";
 
+user_auth = {}
+$(function(){
+	$.post(server+"Users/is_auth_xhr",{},function(islogin_dataResponse){
+		islogin_dataResponse = JSON.parse(islogin_dataResponse)
+		if(islogin_dataResponse.status = "is_auth_ok" ){
+			user_auth = islogin_dataResponse
+		}else{
+			location = "login.html";
+		}}
+	);
+
+})
+
+	
+
 cerrarSesion = function(){
 	$.post(server+"Users/logout_xhr",{},function(logout_dataResponse){
 		logout_dataResponse = JSON.parse(logout_dataResponse)
@@ -26,3 +41,4 @@ denunciar = function(cod_subcategoria, nombre_subcategoria, cod_categoria, nombr
 
 	location = "denuncia.html"
 }
+
