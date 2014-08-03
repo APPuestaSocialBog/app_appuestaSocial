@@ -12,13 +12,13 @@ class UsersController extends AppController {
 public function beforeFilter() {
     parent::beforeFilter();
     // Allow users to register and logout.
-    $this->Auth->allow('add', 'logout','login_xhr','logout_xhr');
+    $this->Auth->allow('add', 'logout','login_xhr','logout_xhr','is_auth');
 }
 
 public function login() {
     if ($this->request->is('post')) {
-    	debug($this->request->data);
-    	exit(1);
+    	/*debug($this->request->data);
+    	exit(1);*/
         if ($this->Auth->login()) {
             return $this->redirect($this->Auth->redirect());
         }
@@ -51,6 +51,7 @@ public function logout_xhr() {
     	echo (json_encode(array("status"=>"logout_fail")));
     }
 }
+
 
 /**
  * Components
@@ -151,7 +152,22 @@ public function logout_xhr() {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	public function home(){}
+	public function home(){
+
+	}
+
+	public function is_auth(){
+		$this->layout = "ajax";
+		if ( $this->Session->check('Auth.User') ){
+			$dataUser["status"] = "is_auth_ok";
+			$dataUser["dataUser"] = $this->Auth->user();
+			echo (json_encode($dataUser));
+		}else{
+			echo (json_encode(array("status"=>"is_auth_fail")));
+		}
+
+	}
+
 	public function noautorized(){
 		$this->layout = "ajax";
 		echo(json_encode(array("status"=>"noautorized")));
@@ -167,6 +183,9 @@ public function logout_xhr() {
 					case 'noautorized':
 					case "login_xhr":
 					case "logout_xhr":
+					case "is_auth":
+						# code...
+						break;
 							return true;
 						break;
 					default:
