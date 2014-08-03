@@ -4,14 +4,12 @@ $(function(){
 
 	categoriaData = JSON.parse(localStorage.getItem("categoria"));
 
-	console.log(categoriaData);
-
 	$("#tipologia").html(categoriaData.categoria.nombre);
 	$("#subtipologia").html(categoriaData.subcategoria.nombre);
 
 	$.post(server+"regions/list_departments_xhr",{},function(response_departamentos){
 		response_departamentos = JSON.parse(response_departamentos);
-
+		
 		$.each(response_departamentos,function(key,data_department){
 			var cod_departamento = data_department["regions"]["cod_departamento"];
 			var nombre_departamento = data_department["regions"]["nombre_departamento"];

@@ -3,6 +3,11 @@
 server = "http://localhost:8000/app_appuestaSocial/servidor/";
 $(function(){
 
+	categoriaData = JSON.parse(localStorage.getItem("categoria"));
+
+	$("#tipologia").html(categoriaData.categoria.nombre);
+	$("#subtipologia").html(categoriaData.subcategoria.nombre);
+
 	user_auth = {}
 	$.post(server+"Users/is_auth_xhr",{},function(islogin_dataResponse){
 		

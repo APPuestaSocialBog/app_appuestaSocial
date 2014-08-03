@@ -109,7 +109,10 @@ class ComplaintsController extends AppController {
 											'Complaints.created',
 											'Complaints.createdby',
 											'Complaints.modified',
-											'Complaints.modifiedby'
+											'Complaints.modifiedby',
+											'users.username',
+											'users.email',
+											'users.phone'	
             							),
             							"conditions" => array('complaints.user_id' => $auth_user_id),
             							'joins' => array( 
@@ -145,6 +148,14 @@ class ComplaintsController extends AppController {
 						                        'foreignKey' => false, 
 						                        'conditions'=> array( 
 						                        	'States.id = Complaints.state_id'
+						                        ) 
+						                    ),array( 
+						                        'table' => 'users', 
+						                        'alias' => 'Users', 
+						                        'type' => 'INNER', 
+						                        'foreignKey' => false, 
+						                        'conditions'=> array( 
+						                        	'Complaints.user_id = Users.id'
 						                        ) 
 						                    )
 
