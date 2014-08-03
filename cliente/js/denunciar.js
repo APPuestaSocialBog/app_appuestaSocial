@@ -2,6 +2,13 @@ server = "http://localhost:8000/app_appuestaSocial/servidor/";
 $(function(){
 	// cargar listado de departamentos
 
+	categoriaData = JSON.parse(localStorage.getItem("categoria"));
+
+	console.log(categoriaData);
+
+	$("#tipologia").html(categoriaData.categoria.nombre);
+	$("#subtipologia").html(categoriaData.subcategoria.nombre);
+
 	$.post(server+"regions/list_departments_xhr",{},function(response_departamentos){
 		response_departamentos = JSON.parse(response_departamentos);
 
