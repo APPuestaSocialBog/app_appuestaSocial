@@ -3200,6 +3200,13 @@ input[type="button"].btn-block {
   content: "\1f527";
 }
 
+.glyphicon-hospital:before {
+  content: "\e460";
+}
+
+
+
+
 .caret {
   display: inline-block;
   width: 0;
