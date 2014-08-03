@@ -6,17 +6,38 @@
 
 
 // Google Maps
+
 	$(window).load(function () {
-		initGoogleMap(); //init Gmap3
+
+		var options = {
+		  enableHighAccuracy: true,
+		  timeout: 5000,
+		  maximumAge: 0
+		};
+
+		function success(pos) {
+		  var crd = pos.coords;
+
+		  console.log('Your current position is:');
+		  console.log('Latitude : ' + crd.latitude);
+		  console.log('Longitude: ' + crd.longitude);
+		  console.log('More or less ' + crd.accuracy + ' meters.');
+
+		  //$('#my-map').map.setCenter(new google.maps.LatLng( crd.latitude, crd.longitude ) );
+		  initGoogleMap(crd.latitude, crd.longitude); //init Gmap3
+		};
+		
+		navigator.geolocation.getCurrentPosition(success, function(err){}, options);
+		
 	});
 
-	function initGoogleMap() {
+	function initGoogleMap(lat, lon) {
 		
 		$('#my-map').gmap3({
 			map: {
 				options: {
-					center:[43.2964, 5.3700],
-					zoom: 2, //adjust this depending upon how much you want to see
+					center:[lat, lon],
+					zoom: 15, //adjust this depending upon how much you want to see
 					styles: [{
 						stylers: [{
 								hue: ''
@@ -29,7 +50,7 @@
 			marker:{
 				values: [
 				  {
-					latLng:[40.4169, 3.7036],
+					latLng:[lat, lon],
 					options:{
 					  icon: {
 								path: fontawesome.markers.MAP_MARKER,
@@ -41,80 +62,10 @@
 								fillOpacity: 1
 							},
 					}
-				  },
-				  {
-					latLng:[60.0000, 90.0000],
-					options:{
-					  icon: {
-								path: fontawesome.markers.MAP_MARKER,
-								scale: 0.7,
-								strokeWeight: 0.2,
-								strokeColor: 'E55151',
-								strokeOpacity: 1,
-								fillColor: '#E55151',
-								fillOpacity: 1
-							},
-					}
-				  },
-				  {
-					latLng:[53.5500, 2.4333],
-					options:{
-					  icon: {
-								path: fontawesome.markers.MAP_MARKER,
-								scale: 0.7,
-								strokeWeight: 0.2,
-								strokeColor: 'E55151',
-								strokeOpacity: 1,
-								fillColor: '#E55151',
-								fillOpacity: 1
-							},
-					}
-				  },
-				  {
-					latLng:[5.8783, -66.2036],
-					options:{
-					  icon: {
-								path: fontawesome.markers.MAP_MARKER,
-								scale: 0.7,
-								strokeWeight: 0.2,
-								strokeColor: 'E55151',
-								strokeOpacity: 1,
-								fillColor: '#E55151',
-								fillOpacity: 1
-							},
-					},
-				  },
-				  {
-					latLng:[40.0000, -100.0000],
-					options:{
-					  icon: {
-								path: fontawesome.markers.MAP_MARKER,
-								scale: 0.7,
-								strokeWeight: 0.2,
-								strokeColor: 'E55151',
-								strokeOpacity: 1,
-								fillColor: '#E55151',
-								fillOpacity: 1
-							},
-					},
-				  },
-				  {
-					latLng:[35.0000, 93.0000],
-					options:{
-					  icon: {
-								path: fontawesome.markers.MAP_MARKER,
-								scale: 0.7,
-								strokeWeight: 0.2,
-								strokeColor: 'E55151',
-								strokeOpacity: 1,
-								fillColor: '#E55151',
-								fillOpacity: 1
-							},
-					},
 				  }
 			]},
 		options: {
-					draggable: true,
+					draggable: false,
 				}
 			
 		});

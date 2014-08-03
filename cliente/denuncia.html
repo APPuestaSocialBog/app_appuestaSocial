@@ -32,7 +32,7 @@
 		<link rel="stylesheet" href="assets/weather-icons/weather-icons.css">
         <link href="assets/select/select2.css" rel="stylesheet"/>
         <link rel="stylesheet" media="screen" type="text/css" href="colorPicker/colpick/css/colpick.css" />
-        <script type="text/javascript" src="js/logic.js"></script>
+
     </head>
     <body  onload="initPieChart();">
     
@@ -157,59 +157,37 @@
                     <div class="row add-padding">
                             <div class="pull-left">
                                 <h1>Quejas y Reclamos</h1>
+                                <ol class="breadcrumb">
+                                  <li><h4 style="color:#000">Usted ha seleccionado un acontecimiento SALUD/NO HAY ATENCIÓN</h4></li>
+                            	</ol>
                             </div>
-                    </div></br>
+                    </div>
+                    
+                    <!-- google map -->
+                  <div class="panel-body no-padding">
+                                                <section id="google-map">
+                                                    <div id="my-map"></div>
+                                                </section>
+                                            </div><!--/ google map-->
                     <!-- / page content header -->
                     <!--Page Content-->
-                        <!--row 1, col 1-->
-                            <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="javascript:void(1)" onclick="denunciar(1,'No hay atención',1,'Salud')"><div class="panel">
-                               		<div class="panel-body brand-secondary-bg text-inverse">
-                                        <div class="pull-left">
-                                        	<div class="badge-circle daily-stat-left">
-                                        	  <div class="big-text"><i></i>1</div></div>							
-                                        </div>
-                                        <span class="big-text">No hay atención</span>
-
-                                    </div></a> 
-                                </div>
-                            </div><!--/ row 1, col 1-->
-                            
-                            <!--row 1, col 1-->
-                            <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="javascript:void(1)" onclick="denunciar(2,'Maltrato',1,'Salud')"><div class="panel">
-                               		<div class="panel-body brand-secondary-bg text-inverse">
-                                        <div class="pull-left">
-                                        	<div class="badge-circle daily-stat-left">
-                                        	  <div class="big-text"><i></i>2</div></div>							
-                                        </div>
-                                        <span class="big-text">Maltrato</span>
-
-                                    </div></a> 
-                                </div>
-                            </div><!--/ row 1, col 1-->
-                            
-                            <!--row 1, col 1-->
-                            <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="javascript:void(1)" onclick="denunciar(3,'Negligencia',1,'Salud')"><div class="panel">
-                               		<div class="panel-body brand-secondary-bg text-inverse">
-                                        <div class="pull-left">
-                                        	<div class="badge-circle daily-stat-left">
-                                        	  <div class="big-text"><i></i>3</div></div>							
-                                        </div>
-                                        <span class="big-text">Negligencia</span>
-
-                                    </div></a> 
-                                </div>
-                            </div><!--/ row 1, col 1-->
-                            
-                     
-                        </div><!--/ row-->
-                    <!--/ Stats top row-->
-  
- 				
-                    
-
+                  <form class="form-signin">
+                               
+                                <select id="Departamento" name="Departamento" style="background-color:#CCC" class="form-control">
+                                	<option value=""></option> 
+                                </select>
+                               
+                                <select id="Minicipio" name="Minicipio" style="background-color:#CCC" class="form-control">
+                                	<option value=""></option> 
+                                </select>
+                                
+                                  <p><textarea style="width: 100%; height:150px; color:#000"></textarea></form></p>
+                                
+                                
+                                <button class="btn btn-lg btn-primary btn-block" onclick="location.href='quepaso.html'">
+                                         <span class="icon-send text-transparent"></span>&nbsp;&nbsp;&nbsp;Siguiente
+                                    </button>
+                  </form>
 
               </div><!-- /page-content-wrapper -->
                 
@@ -221,6 +199,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <!-- Theme Core -->
         <script src="assets/js/jquery.js"></script>
+        <script type="text/javascript" src="js/denunciar.js"></script>
+
         <script src="assets/js/chat.js"></script>
         <script src="assets/js/modernizr-2.6.2.min.js"></script>
         
