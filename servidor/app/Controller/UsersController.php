@@ -12,7 +12,7 @@ class UsersController extends AppController {
 public function beforeFilter() {
     parent::beforeFilter();
     // Allow users to register and logout.
-    $this->Auth->allow('add', 'logout','login_xhr','logout_xhr','is_auth', 'add_new_user_xhr');
+    $this->Auth->allow('add', 'logout','login_xhr','logout_xhr','is_auth', 'add_new_user_xhr','set_departments_list_xhr');
 }
 
 public function login() {
@@ -212,6 +212,9 @@ public function logout_xhr() {
 					case "logout_xhr":
 					case "is_auth":
 					case "add_new_user_xhr":
+					case "set_departments_list_xhr":
+						# code...
+						break;
 						# code...
 						break;
 						# code...
@@ -229,15 +232,18 @@ public function logout_xhr() {
 	}
 
 
-	public function setDepartmentsList_xhr(){
+	public function set_departments_list_xhr(){
 		$this->layout = "ajax";
 
 		$MRegions = ClassRegistry::init("regions");
 		$MRegions->recursive = 1;
 
-		$MRegions->find("all",array(
-				'fields' => array("cod_departamento","nombre_departamento")
+		$departments = $MRegions->find("all",array(
+				'fields' => array("cod_departamento","nombre_departamento"),
+				'group' =>array('cod_departamento')
 			));
+
+		echo (json_encode($departments));
 
 
 	}
