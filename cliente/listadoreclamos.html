@@ -33,7 +33,6 @@
         <link href="assets/select/select2.css" rel="stylesheet"/>
         <link rel="stylesheet" media="screen" type="text/css" href="colorPicker/colpick/css/colpick.css" />
 
-        <script type="text/javascript" src="js/logic.js"></script>
     </head>
     <body  onload="initPieChart();">
     
@@ -135,9 +134,9 @@
                                 <span class="sidebar-menu-item-text">Mis Reclamos y quejas</span>
                             </a>
                         </li>
-                       
+                        
                         <li id="email">
-                            <a href="javascript:void()" onclick="cerrarSesion()">
+                            <a href="login.html">
                                 <span class="nav-icon"><i class="icon-remove icon-2x"></i></span>
                                 <span class="sidebar-menu-item-text">Cerrar Sesión</span> 
                             </a>
@@ -152,59 +151,47 @@
  <!-- page content header -->
                     <div class="row add-padding">
                             <div class="pull-left">
-                                <h1>Quejas y Reclamos</h1>
-                                <ol class="breadcrumb">
-                                  <li><h4 style="color:#000">Seleccione el grupo o tema con el cual tiene que ver con su queja</h4></li>
-                            	</ol>
+                                <h1>Listado de Quejas y Reclamos</h1>
                             </div>
-                    </div></br>
+                    </div>
                     <!-- / page content header -->
                     <!--Page Content-->
-                        <!-- Stats top row-->
-                        <div class="row no-padding">
-                        	<!--row 1, col 1-->
-                            <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="salud.html"><div class="panel">
-                               		<div class="panel-body brand-secondary-bg text-inverse">
-                                        <div class="pull-left">
-                                        	<div class="badge-circle daily-stat-left"><div class="big-text"><i class="icon-hospital"></i></div></div>							
-                                        </div>
-                                        <span class="big-text">Salud</span>
-                                    </div></a> 
-                                </div>
-                            </div><!--/ row 1, col 1-->
-                            
-                            <!--row 1, col 1-->
-                            <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="javascript:void()" onclick="alert('Proximamete subcategorias')"><div class="panel">
-                               		<div class="panel-body brand-warning-bg text-inverse">
-                                        <div class="pull-left">
-                                        	<div class="badge-circle daily-stat-left"><div class="big-text"><i class="icon-edit"></i></div></div>							
-                                        </div>
-                                        <span class="big-text">Estudio</span>
-                                    </div></a> 
-                                </div>
-                            </div><!--/ row 1, col 1-->
-                            
-                            <!--row 1, col 1-->
-                            <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="javascript:void()" onclick="alert('Proximamete subcategorias')"><div class="panel">
-                               		<div class="panel-body brand-primary-bg text-inverse">
-                                        <div class="pull-left">
-                                        	<div class="badge-circle daily-stat-left"><div class="big-text"><i><img src="img/tree.png" width="17" height="24"></i></div></div>							
-                                        </div>
-                                        <span class="big-text">Habitat</span>
-                                    </div></a> 
-                                </div>
-                            </div><!--/ row 1, col 1-->
-                            
-                     
-                        </div><!--/ row-->
-                    <!--/ Stats top row-->
-  
- 				
-                    
-
+                  <div class="panel-body">
+                                       <!--table--> 
+                                            <div class="table-responsive">
+                                                     <table id="tasks" class="table table-hover table-striped table-content">
+                                                      <thead>
+                                                         <tr>
+                                                            <th style="color:#000">Tipo de Queja</th>
+                                                            <th style="color:#000">Tipología</th>
+                                                            <th style="color:#000">Estatus</th>
+                                                            <th style="color:#000">Revisar</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td style="color:#000">SALUD</td>
+                                                          <td style="color:#000">NO HAY ATENCIÓN</td>
+                                                          <td style="color:#000">POR REVIZAR</td>
+                                                            <td><button class="btn btn-default" onClick="location.href='revisar_reclamos.html#id'" >Revisar</button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color:#000">EDUCACIÓN</td>
+                                                          <td style="color:#000">NO ENCUENTRO COLEGIO</td>
+                                                          <td style="color:#000">PENDIENTE</td>
+                                                            <td><button class="btn btn-default" onClick="location.href='revisar_reclamos.html#id'" >Revisar</button></td>
+                                                        </tr>
+                                                        <tr>                                                            
+                                                            <td style="color:#000">SALUD</td>
+                                                          <td style="color:#000">NO HAY ATENCIÓN</td>
+                                                          <td style="color:#000">FINALIZADO</td>
+                                                            <td><button class="btn btn-default" onClick="location.href='revisar_reclamos.html#id'" >Revisar</button></td>
+                                                        </tr>
+                                                      </tbody>
+                                                  </table>
+                                                 </div>
+                                                <!-- / table -->
+                                            </div>
 
               </div><!-- /page-content-wrapper -->
                 

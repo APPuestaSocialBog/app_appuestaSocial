@@ -32,7 +32,7 @@
 		<link rel="stylesheet" href="assets/weather-icons/weather-icons.css">
         <link href="assets/select/select2.css" rel="stylesheet"/>
         <link rel="stylesheet" media="screen" type="text/css" href="colorPicker/colpick/css/colpick.css" />
-
+        <script type="text/javascript" src="js/logic.js"></script>
     </head>
     <body  onload="initPieChart();">
     
@@ -135,12 +135,6 @@
                             </a>
                         </li>
                         <li id="email">
-                            <a href="estadisticas.html">
-                                <span class="nav-icon"><i class="icon-bar-chart icon-2x"></i></span>
-                                <span class="sidebar-menu-item-text">Estadísticas</span>
-                            </a>
-                        </li>
-                        <li id="email">
                             <a href="login.html">
                                 <span class="nav-icon"><i class="icon-remove icon-2x"></i></span>
                                 <span class="sidebar-menu-item-text">Cerrar Sesión</span> 
@@ -157,13 +151,16 @@
                     <div class="row add-padding">
                             <div class="pull-left">
                                 <h1>Quejas y Reclamos</h1>
+                                 <ol class="breadcrumb">
+                                  <li><h4 style="color:#000">Seleccione el grupo o tema con el cual tiene que ver con su queja</h4></li>
+                            	</ol>
                             </div>
                     </div></br>
                     <!-- / page content header -->
                     <!--Page Content-->
                         <!--row 1, col 1-->
                             <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="nohayatencion.html"><div class="panel">
+                             	<a href="javascript:void(1)" onclick="denunciar(1,'No hay atención',1,'Salud')"><div class="panel">
                                		<div class="panel-body brand-secondary-bg text-inverse">
                                         <div class="pull-left">
                                         	<div class="badge-circle daily-stat-left">
@@ -177,7 +174,7 @@
                             
                             <!--row 1, col 1-->
                             <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="maltrato.html"><div class="panel">
+                             	<a href="javascript:void(1)" onclick="denunciar(2,'Maltrato',1,'Salud')"><div class="panel">
                                		<div class="panel-body brand-secondary-bg text-inverse">
                                         <div class="pull-left">
                                         	<div class="badge-circle daily-stat-left">
@@ -191,7 +188,7 @@
                             
                             <!--row 1, col 1-->
                             <div class="col-md-3 col-sm-6 daily-stats">
-                             	<a href="negligencia.html"><div class="panel">
+                             	<a href="javascript:void(1)" onclick="denunciar(3,'Negligencia',1,'Salud')"><div class="panel">
                                		<div class="panel-body brand-secondary-bg text-inverse">
                                         <div class="pull-left">
                                         	<div class="badge-circle daily-stat-left">
