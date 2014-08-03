@@ -232,7 +232,7 @@ public function logout_xhr() {
 	}
 
 
-	public function set_departments_list_xhr(){
+	public function list_departments_xhr(){
 		$this->layout = "ajax";
 
 		$MRegions = ClassRegistry::init("regions");
@@ -247,4 +247,5 @@ public function logout_xhr() {
 
 
 	}
+
 }
