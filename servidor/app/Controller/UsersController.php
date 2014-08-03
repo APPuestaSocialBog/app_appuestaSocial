@@ -27,6 +27,7 @@ public function login() {
     }
 }
 public function login_xhr(){
+	header('Access-Control-Allow-Origin: *'); 
 	$this->layout = "ajax";
 
 	if ($this->request->is('post')) {
@@ -44,6 +45,7 @@ public function logout() {
 }
 
 public function logout_xhr() {
+	header('Access-Control-Allow-Origin: *'); 
 	$this->layout = "ajax";
 
 	if($this->Auth->logout()){
@@ -112,6 +114,7 @@ public function logout_xhr() {
 	}
 
 	public function add_new_user_xhr() {
+		header('Access-Control-Allow-Origin: *'); 
 		$this->layout = "ajax";
 		if ($this->request->is('post')) {
 			$documento = $this->request->data["User"]["username"];
@@ -185,6 +188,8 @@ public function logout_xhr() {
 	}
 
 	public function is_auth_xhr(){
+		header("Access-Control-Allow-Origin: *");
+		header("Access-Control-Allow-Headers: *");
 		$this->layout = "ajax";
 		if ( $this->Session->check('Auth.User') ){
 			$dataUser = array();
@@ -198,6 +203,7 @@ public function logout_xhr() {
 	}
 
 	public function noautorized(){
+		header('Access-Control-Allow-Origin: *'); 
 		$this->layout = "ajax";
 		echo(json_encode(array("status"=>"noautorized")));
 	}

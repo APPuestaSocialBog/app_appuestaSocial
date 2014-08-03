@@ -1,4 +1,5 @@
-server = "http://localhost:8000/app_appuestaSocial/servidor/";
+//server = "http://localhost:8000/app_appuestaSocial/servidor/";
+server = "http://107.21.120.88/servidor/";
 $(function(){
 	user_auth = {}
 	$.post(server+"Users/is_auth_xhr",{},function(islogin_dataResponse){

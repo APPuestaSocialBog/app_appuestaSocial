@@ -1,4 +1,5 @@
-server = "http://localhost:8000/app_appuestaSocial/servidor/";
+//server = "http://localhost:8000/app_appuestaSocial/servidor/";
+server = "http://107.21.120.88/servidor/";
 
 $(function(){
 	gotoDetalle = function(denuncia){

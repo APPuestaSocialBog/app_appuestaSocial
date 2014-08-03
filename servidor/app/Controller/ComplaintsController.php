@@ -64,6 +64,7 @@ class ComplaintsController extends AppController {
 	}
 
 	public function add_new_complaint_xhr() {
+		header('Access-Control-Allow-Origin: *'); 
 		$this->layout = "ajax";
 
 		if ($this->request->is('post')) {
@@ -85,6 +86,7 @@ class ComplaintsController extends AppController {
 	}
 
 	public function list_complaints_by_user_id(){
+		header('Access-Control-Allow-Origin: *'); 
 		$this->layout = "ajax";
 
 		if ($this->request->is('post')) {
@@ -168,6 +170,7 @@ class ComplaintsController extends AppController {
 
 
 	public function list_complaints_by_municipality_id(){
+		header('Access-Control-Allow-Origin: *'); 
 		$this->layout = "ajax";
 
 		if ($this->request->is('post')) {
@@ -299,7 +302,7 @@ class ComplaintsController extends AppController {
 	}
 
 	public function isAuthorized($user){
-
+		header('Access-Control-Allow-Origin: *'); 
 		$accion = $this->action;
 		if(!parent::isAuthorized($user)){
 			if (isset($user['group_id']) && $user['group_id'] == 2) {

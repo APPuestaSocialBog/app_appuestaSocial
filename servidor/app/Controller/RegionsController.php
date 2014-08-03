@@ -103,6 +103,7 @@ class RegionsController extends AppController {
 	}
 
 	public function list_departments_xhr(){
+		header('Access-Control-Allow-Origin: *'); 
 		$this->layout = "ajax";
 
 		$MRegions = ClassRegistry::init("regions");
@@ -119,6 +120,7 @@ class RegionsController extends AppController {
 	}
 
 	public function list_municipalities_by_department_id_xhr(){
+		header('Access-Control-Allow-Origin: *'); 
 		$this->layout = "ajax";
 
 		if ($this->request->is('post')) {
