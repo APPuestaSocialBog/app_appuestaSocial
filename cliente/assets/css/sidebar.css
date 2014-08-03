@@ -5,15 +5,16 @@
 }
 
 #sidebar-wrapper {
-  margin-left: -250px;
-  left: 250px;
-  width: 250px;
-  position:absolute;
-  height: 100%;
-  z-index: 1000;
-   -webkit-transition:all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
-  padding-bottom:350px;
+	margin-left: -250px;
+	left: 250px;
+	width: 250px;
+	position: absolute;
+	height: 0px;
+	z-index: 0;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	padding-bottom: 350px;
+	top: 2px;
 }
 
 .boxed {position:relative!important;left:0px!important;float:left}
