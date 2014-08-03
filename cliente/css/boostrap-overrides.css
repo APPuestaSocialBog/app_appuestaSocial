@@ -298,10 +298,7 @@ th .check								{padding:4.25px 6px 4.5px 10px; margin-right:0;}
 .input-group-btn .btn,					
 .input-group-btn .btn .icon-user  		{border:0!important;line-height:1.56em}
 .input-group-addon						{border:0!important;}
-.center-panel .checkbox					{
-	margin-left: -1.5em!important;
-	color: #000;
-}
+.center-panel .checkbox					{margin-left:-1.5em!important;}
 .form-signin .input-group				{margin-bottom:1em!important;}
 
 /*images*/	
@@ -353,12 +350,12 @@ ul, ol 							{margin-top: 0px;margin-bottom: 0px;}
     z-index: 9999;
 }
 .preloader {
-    height: 30px;
-    left: 50%;
-    margin: -15px 0 0 -15px;
-    position: absolute;
-    top: 50%;
-    width: 30px;
+	height: 30px;
+	left: 332px;
+	margin: -15px 0 0 -15px;
+	position: absolute;
+	top: 65px;
+	width: 30px;
 }
 
 @media (min-width: 480px)and (max-width: 880px) {

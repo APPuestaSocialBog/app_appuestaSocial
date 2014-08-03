@@ -18,10 +18,14 @@
 		function success(pos) {
 		  var crd = pos.coords;
 
+		  /*
 		  console.log('Your current position is:');
 		  console.log('Latitude : ' + crd.latitude);
 		  console.log('Longitude: ' + crd.longitude);
 		  console.log('More or less ' + crd.accuracy + ' meters.');
+*/
+			$("#lat").val(crd.latitude);
+			$("#lon").val(crd.longitude);
 
 		  //$('#my-map').map.setCenter(new google.maps.LatLng( crd.latitude, crd.longitude ) );
 		  initGoogleMap(crd.latitude, crd.longitude); //init Gmap3

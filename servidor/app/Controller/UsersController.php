@@ -187,6 +187,7 @@ public function logout_xhr() {
 	public function is_auth_xhr(){
 		$this->layout = "ajax";
 		if ( $this->Session->check('Auth.User') ){
+			$dataUser = array();
 			$dataUser["status"] = "is_auth_ok";
 			$dataUser["dataUser"] = $this->Auth->user();
 			echo (json_encode($dataUser));
@@ -211,7 +212,7 @@ public function logout_xhr() {
 					case 'noautorized':
 					case "login_xhr":
 					case "logout_xhr":
-					case "is_auth":
+					case "is_auth_xhr":
 					case "add_new_user_xhr":
 					case "set_departments_list_xhr":
 					case "list_municipalities_by_department_id_xhr":

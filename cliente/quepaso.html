@@ -151,25 +151,30 @@
  <!-- page content header -->
                     <div class="row add-padding">
                             <div class="pull-left">
-                                <h1>Quejas y Reclamos</h1>
+                                <h1>DENUNCIA</h1>
                                 <ol class="breadcrumb">
-                                  <li><h4 style="color:#000">Usted ha seleccionado un acontecimiento SALUD/NO HAY ATENCIÓN</h4></li></br>
-                                  <li><h4 style="color:#000">Describa brevemente el motivo de su queja</h4></li>
+                                  <li><h4 style="color: #999">Usted ha seleccionado un acontecimiento SALUD/NO HAY ATENCIÓN</h4></li></br>
+                                  <li><h4 style="color: #999">Describa brevemente el motivo de su queja</h4></li>
                             	</ol>
                             </div>
                     </div>
                     <!-- / page content header -->
                     <!--Page Content-->
-                  <form class="form-signin" style="color:#000">                                
-                                  <p><textarea style="width: 100%; height:150px; color:#000"></textarea></form></p>
+                  <form class="form-signin" style="color:#000" id="enviar_denuncia">                                
+                                  <p><textarea id="quepaso" style="width: 100%; height:150px; color:#000"></textarea></form></p>
                                 
                                 
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                <button class="btn btn-lg btn-primary btn-block" onclick="$('#enviar_denuncia').submit()">
                                          <span class="icon-send text-transparent"></span>&nbsp;&nbsp;&nbsp;Enviar
                                     </button>
-                  </form>
+                  </form></br>
 
+<div align="center">
+						<img src="img/paso4.png" width="519" height="97">
+               </div>  
               </div><!-- /page-content-wrapper -->
+              
+              
                 
           </div><!-- / wrapper for content below nav bar -->
         </div><!-- end container for chat panel push-->
@@ -179,6 +184,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <!-- Theme Core -->
         <script src="assets/js/jquery.js"></script>
+        <script src="js/quepaso.js"></script>
+
         <script src="assets/js/chat.js"></script>
         <script src="assets/js/modernizr-2.6.2.min.js"></script>
         

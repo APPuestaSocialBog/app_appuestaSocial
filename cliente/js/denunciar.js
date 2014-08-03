@@ -49,4 +49,25 @@ $(function(){
 		})
 	});
 
+	$("#denunciar_form").submit(function(){
+
+		departamento = $("#Departamento").val();
+		municipio 	 = $("#Minicipio").val();
+		detalleDonde = $("#donde").val();
+		lat = $("#lat").val();
+		lon = $("#lon").val();
+
+		datos_ubicacion_denuncia = {
+			departamento:departamento,
+			municipio:municipio,
+			detalleDonde:detalleDonde,
+			lat:lat,
+			lon:lon
+		}
+		localStorage.setItem("datos_ubicacion_denuncia",JSON.stringify(datos_ubicacion_denuncia));
+		location = "quepaso.html";
+
+		return false;
+	})
+
 })

@@ -151,9 +151,9 @@
  <!-- page content header -->
                     <div class="row add-padding">
                             <div class="pull-left">
-                                <h1>Quejas y Reclamos</h1>
+                                <h1>UBICACIÓN</h1>
                                 <ol class="breadcrumb">
-                                  <li><h4 style="color:#000">Usted ha seleccionado un acontecimiento en <span style="color:#000" id="tipologia">SALUD</span>/<span style="color:#000" id="subtipologia">NO HAY ATENCIÓN</span></h4></li>
+                                  <li><h4 style="color: #999">Usted ha seleccionado un acontecimiento en <span style="color:#000" id="tipologia">SALUD</span>/<span style="color:#000" id="subtipologia">NO HAY ATENCIÓN</span></h4></li>
                             	</ol>
                             </div>
                     </div>
@@ -166,8 +166,11 @@
                                             </div><!--/ google map-->
                     <!-- / page content header -->
                     <!--Page Content-->
-                  <form class="form-signin">
+                  <form class="form-signin" id="denunciar_form">
                                
+                               <input type="hidden" id="lat" />
+                               <input type="hidden" id="lon" /> 
+
                                 <select id="Departamento" name="Departamento" style="background-color:#CCC" class="form-control">
                                 	<option value=""></option> 
                                 </select>
@@ -177,16 +180,22 @@
                                 </select>
                                 
                                  <ol class="breadcrumb">
-                                  <li><h4 style="color:#000">En que lugar se esta presentando su queja o reclamo</h4></li>
+                                  <li><h4 style="color:#000">Detalla en que lugar se esta presentando su queja o reclamo</h4></li>
                             	</ol>
                                 
-                                  <p><textarea style="width: 100%; height:40px; color:#000"></textarea></form></p>
+                                  <p><textarea id="donde" style="width: 100%; height:40px; color:#000"></textarea></form></p>
                                 
                                 
-                                <button class="btn btn-lg btn-primary btn-block" onclick="location.href='quepaso.html'">
+                                <button class="btn btn-lg btn-primary btn-block" onclick="$('#denunciar_form').submit()">
                                          <span class="icon-send text-transparent"></span>&nbsp;&nbsp;&nbsp;Siguiente
                                     </button>
                   </form>
+                  
+                  <div id="page-content-wrapper" class="animated-med-delay fadeInRight">
+
+                <div align="center">
+						<img src="img/paso3.png" width="519" height="97">
+               </div>  
 
               </div><!-- /page-content-wrapper -->
                 
