@@ -160,11 +160,11 @@
                     </div>
                     <!-- / page content header -->
                     <!--Page Content-->
-                  <form class="form-signin" style="color:#000">                                
-                                  <p><textarea style="width: 100%; height:150px; color:#000"></textarea></form></p>
+                  <form class="form-signin" style="color:#000" id="enviar_denuncia">                                
+                                  <p><textarea id="quepaso" style="width: 100%; height:150px; color:#000"></textarea></form></p>
                                 
                                 
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                <button class="btn btn-lg btn-primary btn-block" onclick="$('#enviar_denuncia').submit()">
                                          <span class="icon-send text-transparent"></span>&nbsp;&nbsp;&nbsp;Enviar
                                     </button>
                   </form>
@@ -179,6 +179,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <!-- Theme Core -->
         <script src="assets/js/jquery.js"></script>
+        <script src="js/quepaso.js"></script>
+
         <script src="assets/js/chat.js"></script>
         <script src="assets/js/modernizr-2.6.2.min.js"></script>
         
