@@ -154,6 +154,86 @@ class ComplaintsController extends AppController {
 		}
 	}
 
+
+	public function list_complaints_by_municipality_id(){
+		$this->layout = "ajax";
+
+		if ($this->request->is('post')) {
+			$municipality_id = $this->request->data["municipality_id"];
+			$MComplaints = ClassRegistry::init("complaints");
+			//$MComplaints->recursive = -2;
+			$MComplaints->Behaviors->load('Containable');
+
+            $complaints_list = $MComplaints->find("all", array(
+            							"fields" => array(
+            								'Tipologies.name',
+											'Subtipologies.name',
+											'Regions.nombre_departamento',
+											'Regions.nombre_municipio',
+											'States.name',
+											'Complaints.latitude',
+											'Complaints.longitude',
+											'Complaints.donde',
+											'Complaints.que_paso',
+											'Complaints.response',
+											'Complaints.created',
+											'Complaints.createdby',
+											'Complaints.modified',
+											'Complaints.modifiedby',
+											'users.username',
+											'users.email',
+											'users.phone'	
+            							),
+            							"conditions" => array('complaints.region_id' => $municipality_id),
+            							'joins' => array( 
+						                    array( 
+						                        'table' => 'tipologies', 
+						                        'alias' => 'Tipologies', 
+						                        'type' => 'INNER', 
+						                        'foreignKey' => false, 
+						                        'conditions'=> array( 
+						                        'Complaints.tipology_id = Tipologies.id'
+						                        ) 
+						                    ),array( 
+						                        'table' => 'subtipologies', 
+						                        'alias' => 'Subtipologies', 
+						                        'type' => 'INNER', 
+						                        'foreignKey' => false, 
+						                        'conditions'=> array( 
+						                        	'Complaints.subtipology_id = Subtipologies.id'
+						                        ) 
+						                    ),array( 
+						                        'table' => 'regions', 
+						                        'alias' => 'Regions', 
+						                        'type' => 'INNER', 
+						                        'foreignKey' => false, 
+						                        'conditions'=> array( 
+						                        	'Regions.cod_municipio = Complaints.region_id'
+						                        ) 
+						                    ),array( 
+						                        'table' => 'states', 
+						                        'alias' => 'States', 
+						                        'type' => 'INNER', 
+						                        'foreignKey' => false, 
+						                        'conditions'=> array( 
+						                        	'States.id = Complaints.state_id'
+						                        ) 
+						                    ),array( 
+						                        'table' => 'users', 
+						                        'alias' => 'Users', 
+						                        'type' => 'INNER', 
+						                        'foreignKey' => false, 
+						                        'conditions'=> array( 
+						                        	'Complaints.user_id = Users.id'
+						                        ) 
+						                    )
+
+						                )
+            						));
+
+            echo (json_encode($complaints_list));
+		}
+	}
 /**
  * edit method
  *
@@ -213,6 +293,9 @@ class ComplaintsController extends AppController {
 				switch ($accion) {
 					case 'add_new_complaint_xhr': 
 					case 'list_complaints_by_user_id':
+					case 'list_complaints_by_municipality_id':
+						# code...
+						break;
 						# code...
 						break;
 						# code...
