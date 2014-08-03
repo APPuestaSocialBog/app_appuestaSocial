@@ -31,7 +31,39 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	  public $components = array('DebugKit.Toolbar');
+	  public $components = array(
+	  	'DebugKit.Toolbar',
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'users',
+                'action' => 'home'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'display',
+                'home'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish'
+                )
+            ),
+            'authorize' => array('Controller') // Added this line
+        )
+    );
+
+    public function beforeFilter() {
+        $this->Auth->allow('*');
+    }
+    public function isAuthorized($user) {
+	    // funcionario can access every action
+	    if (isset($user['group_id']) && $user['group_id'] === 1) {
+	        return true;
+	    }
+	    // Default deny
+	    return false;
+	}
 }
 
  

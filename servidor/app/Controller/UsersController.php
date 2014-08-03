@@ -8,12 +8,57 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
+
+public function beforeFilter() {
+    parent::beforeFilter();
+    // Allow users to register and logout.
+    $this->Auth->allow('add', 'logout','login_xhr','logout_xhr');
+}
+
+public function login() {
+    if ($this->request->is('post')) {
+    	debug($this->request->data);
+    	exit(1);
+        if ($this->Auth->login()) {
+            return $this->redirect($this->Auth->redirect());
+        }
+        $this->Session->setFlash(__('Invalid username or password, try again'));
+    }
+}
+public function login_xhr(){
+	$this->layout = "ajax";
+
+	if ($this->request->is('post')) {
+        if ($this->Auth->login()) {
+            echo (json_encode(array("status"=>"auth_ok")));
+        }else{
+        	echo (json_encode(array("status"=>"auth_fail")));
+        }
+        //$this->Session->setFlash(__('Invalid username or password, try again'));
+    }
+}
+
+public function logout() {
+    return $this->redirect($this->Auth->logout());
+}
+
+public function logout_xhr() {
+	$this->layout = "ajax";
+
+	if($this->Auth->logout()){
+	 	echo (json_encode(array("status"=>"logout_ok")));
+    }else{
+    	echo (json_encode(array("status"=>"logout_fail")));
+    }
+}
+
 /**
  * Components
  *
  * @var array
  */
 	public $components = array('Paginator');
+	
 
 /**
  * index method
@@ -104,5 +149,33 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function home(){}
+	public function noautorized(){
+		$this->layout = "ajax";
+		echo(json_encode(array("status"=>"noautorized")));
+	}
+
+	public function isAuthorized($user){
+
+		$accion = $this->action;
+		if(!parent::isAuthorized($user)){
+			if (isset($user['group_id']) && $user['group_id'] == 2) {
+				switch ($accion) {
+					case 'home': 
+					case 'noautorized':
+					case "login_xhr":
+					case "logout_xhr":
+							return true;
+						break;
+					default:
+						$this->redirect(array('controller' => 'users', 'action' => 'noautorized'));
+						return false;
+						break;
+				}
+	    	}
+		}
+		return true;
 	}
 }
